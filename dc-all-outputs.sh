@@ -10,3 +10,5 @@ xrandr --output DisplayPort-3 --off
 xrandr --output DisplayPort-4 --off
 
 echo "disconnected"
+
+exit 0
