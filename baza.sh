@@ -38,7 +38,7 @@ fi
 i3-msg '[workspace="3"]' move workspace to output eDP
 i3-msg '[workspace="4"]' move workspace to output eDP
 
-setxkbmap -layout us
+setxkbmap -layout us,ru -option grp:alt_space_toggle
 
 echo "--- --- --- --- --- --- ---"
 echo -e "connected!!!!     successs!!! \nyeaaahhhhh!! lets gooooo!!!\n"
