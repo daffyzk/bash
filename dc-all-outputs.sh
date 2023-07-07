@@ -13,6 +13,8 @@ xrandr --output DisplayPort-6 --off
 xrandr --output DisplayPort-7 --off
 xrandr --output DisplayPort-8 --off
 
+setxkbmap -layout us,ru -option grp:alt_space_toggle
+
 echo "disconnected"
 
 exit 0
