@@ -25,13 +25,12 @@ then
 
     i3-msg '[workspace="3"]' move workspace to output eDP-1
     i3-msg '[workspace="4"]' move workspace to output eDP-1
+    echo "--- --- --- --- --- --- ---"
+    echo "good job, things didn't end horribly wrong..."
 else
-    echo "dock is not connected..."
+    echo "either the dock is not connected or something else is fucked up..."
 fi
-setxkbmap -layout us,ru -option grp:alt_space_toggle
-
-echo "--- --- --- --- --- --- ---"
-echo "things didn't end horribly wrong"
+setxkbmap -layout us,es,ru -option grp:alt_space_toggle
 
 exit 0
 
