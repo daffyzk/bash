@@ -17,17 +17,16 @@ then
     print_funny $(($RANDOM % 10 + 1 ))
     if xrandr | grep -q 'DP-3 connected' ; 
     then
-        xrandr --output DP-3 --rotate right --mode 1920x1080 --rate 60.00 --left-of eDP-1
-        xrandr --output DP-5 --mode 1920x1080 --rate 120.00 --left-of DP-3 --pos 0x840
+        xrandr --output DP-3 --mode 1920x1080 --rate 60.00 --left-of eDP-1
+        xrandr --output DP-5 --mode 1920x1080 --rate 120.00 --left-of DP-3
         i3-msg '[workspace="1"]' move workspace to output DP-5
         i3-msg '[workspace="2"]' move workspace to output DP-3
     elif xrandr | grep -q 'DP-4 connected' ; 
     then
-        xrandr --output DP-4 -rotate right --mode 1920x1080 --rate 60.00 --left-of eDP
-        xrandr --output DP-7 --mode 1920x1080 --rate 120.00 --left-of DP-4 --pos 0x840
+        xrandr --output DP-4 --mode 1920x1080 --rate 60.00 --left-of eDP
+        xrandr --output DP-7 --mode 1920x1080 --rate 120.00 --left-of DP-4 
         i3-msg '[workspace="1"]' move workspace to output DP-7
         i3-msg '[workspace="2"]' move workspace to output DP-4
-    fi
     fi
 
     i3-msg '[workspace="3"]' move workspace to output eDP-1
