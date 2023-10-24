@@ -18,6 +18,8 @@ do
     xrandr --output DisplayPort-4 --mode 1920x1080 --rate 120.00 --left-of DisplayPort-2
 done
 
+
+
 setxkbmap -layout us
 
 echo "connected!!!! successs!!! yeaaahhhhh!! lets gooooo!!!"

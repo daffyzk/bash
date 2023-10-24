@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "beep boop connecting to desktop"
+echo "starting up dock config..."
 echo "--- --- --- --- --- --- ---"
 
 print_funny(){
@@ -12,35 +12,31 @@ print_funny(){
     fi
 }
 
-print_funny $(($RANDOM % 10 + 1 ))
-if xrandr | grep -q 'DisplayPort-2 connected' ; 
+if lsusb | grep -q 'Lenovo 40AS' ;
 then
-	xrandr --output DisplayPort-2 --rotate right --mode 1920x1080 --rate 60.00 --left-of eDP
-    xrandr --output DisplayPort-4 --mode 1920x1080 --rate 120.00 --left-of DisplayPort-2 --pos 0x840
-    i3-msg '[workspace="1"]' move workspace to output DisplayPort-4
-    i3-msg '[workspace="2"]' move workspace to output DisplayPort-2
+    print_funny $(($RANDOM % 10 + 1 ))
+    if xrandr | grep -q '\<DP-3 connected\>' ; 
+    then
+        xrandr --output DP-5 --mode 1920x1080 --rate 120.00 --left-of eDP-1
+        xrandr --output DP-3 --mode 1920x1080 --rate 60.00 --left-of DP-3
+        i3-msg '[workspace="1"]' move workspace to output DP-5
+        i3-msg '[workspace="2"]' move workspace to output DP-3
+    elif xrandr | grep -q '\<DP-4 connected\>' ; 
+    then
+        xrandr --output DP-6 --mode 1920x1080 --rate 120.00 --right-of eDP-1
+        xrandr --output DP-4 --mode 1920x1080 --rate 60.00 --right-of DP-6 
+        i3-msg '[workspace="1"]' move workspace to output DP-6
+        i3-msg '[workspace="2"]' move workspace to output DP-4
+    fi
 
-elif xrandr | grep -q 'DisplayPort-3 connected' ; 
-then
-    xrandr --output DisplayPort-3 --rotate right --mode 1920x1080 --rate 60.00 --left-of eDP
-    xrandr --output DisplayPort-6 --mode 1920x1080 --rate 120.00 --left-of DisplayPort-3 --pos 0x840
-    i3-msg '[workspace="1"]' move workspace to output DisplayPort-6
-    i3-msg '[workspace="2"]' move workspace to output DisplayPort-3
-
-elif xrandr | grep -q 'DisplayPort-5 connected' ; 
-then
-    xrandr --output DisplayPort-5 --rotate right --mode 1920x1080 --rate 60.00 --left-of eDP
-    xrandr --output DisplayPort-8 --mode 1920x1080 --rate 120.00 --left-of DisplayPort-5 --pos 0x840
-    i3-msg '[workspace="1"]' move workspace to output DisplayPort-8
-    i3-msg '[workspace="2"]' move workspace to output DisplayPort-5
+    i3-msg '[workspace="3"]' move workspace to output eDP-1
+    i3-msg '[workspace="4"]' move workspace to output eDP-1
+    echo "--- --- --- --- --- --- ---"
+    echo "good job, things didn't end horribly wrong..."
+else
+    echo "either the dock is not connected or something else is fucked up..."
 fi
-
-i3-msg '[workspace="3"]' move workspace to output eDP
-i3-msg '[workspace="4"]' move workspace to output eDP
-
-setxkbmap -layout us,ru -option grp:alt_space_toggle
-
-echo "--- --- --- --- --- --- ---"
-echo -e "connected!!!!     successs!!! \nyeaaahhhhh!! lets gooooo!!!\n"
+setxkbmap -layout us,es,ru -option grp:alt_space_toggle
 
 exit 0
+
