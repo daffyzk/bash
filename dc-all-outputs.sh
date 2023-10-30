@@ -8,6 +8,8 @@ xrandr --output DP-3 --off
 xrandr --output DP-5 --off
 xrandr --output DP-7 --off
 xrandr --output DP-4 --off
+xrandr --output DP-6 --off
+
 xrandr --output DisplayPort-0 --off
 xrandr --output DisplayPort-1 --off
 xrandr --output DisplayPort-2 --off

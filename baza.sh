@@ -17,9 +17,9 @@ then
     print_funny $(($RANDOM % 10 + 1 ))
     if xrandr | grep -q '\<DP-3 connected\>' ; 
     then
-        xrandr --output DP-5 --mode 1920x1080 --rate 120.00 --left-of eDP-1
-        xrandr --output DP-3 --mode 1920x1080 --rate 60.00 --left-of DP-3
-        i3-msg '[workspace="1"]' move workspace to output DP-5
+        xrandr --output DP-4 --mode 1920x1080 --rate 120.00 --right-of eDP-1
+        xrandr --output DP-3 --mode 1920x1080 --rate 60.00 --right-of DP-4
+        i3-msg '[workspace="1"]' move workspace to output DP-4
         i3-msg '[workspace="2"]' move workspace to output DP-3
     elif xrandr | grep -q '\<DP-4 connected\>' ; 
     then
