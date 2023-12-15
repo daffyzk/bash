@@ -8,7 +8,7 @@ read wifi
 echo "password?"
 read pw
 
-nmcli dev wifi connect $wifi password $pw
+nmcli dev wifi connect "$wifi" password "$pw"
 
 exit 0
 
