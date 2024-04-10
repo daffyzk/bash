@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xrandr --output DisplayPort-0 --mode 4096x2160 --above eDP
