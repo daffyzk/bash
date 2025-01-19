@@ -17,13 +17,13 @@ then
     print_funny $(($RANDOM % 10 + 1 ))
     if xrandr | grep -q '\<DisplayPort-2 connected\>' ; 
     then
-        xrandr --output DisplayPort-3 --mode 1920x1080 --rate 240.00 --right-of eDP --rotate normal 
+        xrandr --output DisplayPort-3 --mode 1920x1080 --rate 240.00 --right-of eDP --rotate normal --primary
         xrandr --output DisplayPort-2 --mode 1920x1080 --rate 60.00 --right-of DisplayPort-3 --rotate right 
         i3-msg '[workspace="1"]' move workspace to output DisplayPort-3
         i3-msg '[workspace="2"]' move workspace to output DisplayPort-2
     elif xrandr | grep -q '\<DisplayPort-4 connected\>' ; 
     then
-        xrandr --output DisplayPort-5 --mode 1920x1080 --rate 240.00 --right-of eDP
+        xrandr --output DisplayPort-5 --mode 1920x1080 --rate 240.00 --right-of eDP --primary
         xrandr --output DisplayPort-4 --mode 1920x1080 --rate 60.00 --right-of DisplayPort-5 --rotate right
         i3-msg '[workspace="1"]' move workspace to output DisplayPort-4
         i3-msg '[workspace="2"]' move workspace to output DisplayPort-5
