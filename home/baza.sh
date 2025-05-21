@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# i think this one is for horizontal + manjaro or something
+
 echo "starting up dock config..."
 echo "--- --- --- --- --- --- ---"
+
+LAPTOP="eDP-1"
 
 print_funny(){
     if [[ $1 -gt 7 ]]
@@ -17,20 +21,24 @@ then
     print_funny $(($RANDOM % 10 + 1 ))
     if xrandr | grep -q '\<DP-3 connected\>' ; 
     then
-        xrandr --output DP-4 --mode 1920x1080 --rate 120.00 --right-of eDP-1
-        xrandr --output DP-3 --mode 1920x1080 --rate 60.00 --right-of DP-4
-        i3-msg '[workspace="1"]' move workspace to output DP-4
-        i3-msg '[workspace="2"]' move workspace to output DP-3
+        PRIMARY="DP-4"
+        SECONDARY="DP-3"
+        xrandr --output $PRIMARY --mode 1920x1080 --rate 60.00 --right-of $LAPTOP
+        xrandr --output $SECONDARY --mode 1920x1080 --rate 60.00 --right-of $PRIMARY
+        MSG="workspace 1; move workspace to output $PRIMARY; workspace 2; move workspace to output $SECONDARY"
+        i3-msg $MSG
+
     elif xrandr | grep -q '\<DP-5 connected\>' ; 
     then
-        xrandr --output DP-6 --mode 1920x1080 --rate 120.00 --right-of eDP-1
-        xrandr --output DP-5 --mode 1920x1080 --rate 60.00 --right-of DP-6 
-        i3-msg '[workspace="1"]' move workspace to output DP-6
-        i3-msg '[workspace="2"]' move workspace to output DP-5
+        PRIMARY="DP-6"
+        SECONDARY="DP-5"
+        xrandr --output $PRIMARY --mode 1920x1080 --rate 60.00 --right-of $LAPTOP
+        xrandr --output $SECONDARY --mode 1920x1080 --rate 60.00 --right-of $PRIMARY
+        MSG="workspace 1; move workspace to output $PRIMARY; workspace 2; move workspace to output $SECONDARY"
+        i3-msg $MSG
     fi
-
-    i3-msg '[workspace="3"]' move workspace to output eDP-1
-    i3-msg '[workspace="4"]' move workspace to output eDP-1
+    COMMON_MSG="workspace 3; move workspace to output $LAPTOP; workspace 4; move workspace to output $LAPTOP"
+    i3-msg $COMMON_MSG
     echo "--- --- --- --- --- --- ---"
     echo "good job, things didn't end horribly wrong..."
 else
